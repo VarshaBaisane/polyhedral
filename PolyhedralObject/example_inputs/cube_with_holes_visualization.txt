@@ -1,0 +1,31 @@
+Vertices:
+-0.5 -0.5 -0.5
+0.5 -0.5 -0.5
+0.5 0.5 -0.5
+-0.5 0.5 -0.5
+-0.5 -0.5 0.5
+0.5 -0.5 0.5
+0.5 0.5 0.5
+-0.5 0.5 0.5
+Edges:
+0 1
+1 2
+2 3
+3 0
+4 5
+5 6
+6 7
+7 4
+0 4
+1 5
+2 6
+3 7
+Faces:
+4 0 1 2 3
+4 4 5 6 7
+4 0 1 5 4
+4 1 2 6 5
+4 2 3 7 6
+4 3 0 4 7
+Holes:
+Location: external, Position: center, Face: 2, Diameter: 0.8, Depth: 0.6, Start Depth from Surface: -0.25
