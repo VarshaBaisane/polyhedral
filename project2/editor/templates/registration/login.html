@@ -4,13 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .additional-links {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .additional-links a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .additional-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
+    <div class="login-container">
+        <h2>Login</h2>
+        
+        <!-- Show errors if form validation failed -->
+        {% if form.errors %}
+            <div class="error">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <!-- Login form -->
+        <form method="post">
+            {% csrf_token %}
+            
+            <!-- Updated to show email for authentication -->
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+            
+            <label for="id_password">Password:</label>
+            {{ form.password }}
+            
+            <button type="submit">Login</button>
+        </form>
+        
+        <!-- Optional: Links for additional actions -->
+        <div class="additional-links">
+            <a href="{% url 'password_reset' %}">Forgot Password?</a><br>
+            <a href="{% url 'signup' %}">Don't have an account? Sign up</a>
+        </div>
+    </div>
 </body>
 </html>

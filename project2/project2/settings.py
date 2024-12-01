@@ -158,3 +158,11 @@ LOGIN_URL = '/login/'  # Matches the login view path in your URLs
 LOGIN_URL = '/auth/login/'  # Default is '/accounts/login/', you can override it
 LOGIN_REDIRECT_URL = '/'   # Where to go after successful login
 LOGOUT_REDIRECT_URL = '/auth/login/'  # Where to go after logout
+# settings.py
+# settings.py
+
+AUTHENTICATION_BACKENDS = [
+    'project2.backends.EmailBackend',  # Custom email backend
+    'django.contrib.auth.backends.ModelBackend',  # Default backend (for username login)
+]
+
